@@ -173,17 +173,17 @@
 			if (!empty($billing2)) {
 				$billing_address .= "\n" . $billing2;
 			}
-			$billing_address .= "\n" . $order->get_billing_city();
+			/* $billing_address .= "\n" . $order->get_billing_city();
 			$state = $order->get_billing_state();
 			if (!empty($state)) {
 				$billing_address .= "\n" . $state;
 				unset($state);
-			}
-			$country = $order->get_billing_country();
+			} */
+			/* $country = $order->get_billing_country();
 			if (!empty($country)) {
 				$billing_address .= "\n" . $country;
 				unset($country);
-			}
+			} */
 
 			// Fields for hash
 			$req = array(
@@ -196,8 +196,11 @@
 				'orderRef'          => $order_id,
 				'customerName'      => $order->get_billing_first_name() . ' ' . $order->get_billing_last_name(),
 				'customerAddress'   => $billing_address,
+				'customerTown'      => $order->get_billing_city(),
+				'customerCounty'    => $order->get_billing_state(),
 				'customerPostCode'  => $order->get_billing_postcode(),
 				'customerEmail'     => $order->get_billing_email(),
+				'customerCountryCode' => $order->get_billing_country()
 			);
 
 			$phone = $order->get_billing_phone();
